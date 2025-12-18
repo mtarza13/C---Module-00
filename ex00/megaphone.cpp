@@ -12,30 +12,19 @@
 
 #include <iostream> 
 
-void print_arg(char *av)
-{
-	while (*av)
-	{
-		char c = *av;
-		if (std::isalpha(c))
-			std::cout << std::toupper(c);
-		else
-			std::cout << c;
-		++av;
-	}
-}
+int main(int argc, char ** argv){
+    if (argc == 1)
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+    else{
+        for (int i = 1; i < argc; ++i){
+            std::string  word(argv[i]);
 
-int main(int ac , char *av[])
-{
-	if(ac == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-	}
-	else
-	{
-		for (int i = 1; i < ac; ++i)
-			print_arg(av[i]);
-		std::cout << std::endl;
-	}
-
+            for (unsigned int j = 0; j < word.length(); ++j){
+                word[j] = toupper(word[j]);
+            }
+            std::cout << word;
+        }
+        std::cout << std::endl;
+    }
+    return (0);
 }
